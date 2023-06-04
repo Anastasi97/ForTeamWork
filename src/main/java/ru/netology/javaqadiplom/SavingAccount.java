@@ -42,15 +42,11 @@ public class SavingAccount extends Account {
      */
     @Override
     public boolean pay(int amount) {
-        if (amount <= 0) {
+        if (amount <= 0 || amount > balance - minBalance) {
             return false;
         }
-        balance = balance - amount;
-        if (balance > minBalance) {
-            return true;
-        } else {
-            return false;
-        }
+        balance -= amount;
+        return true;
     }
 
     /**
@@ -69,8 +65,8 @@ public class SavingAccount extends Account {
         if (amount <= 0) {
             return false;
         }
-        if (balance + amount < maxBalance) {
-            balance = amount;
+        if (balance + amount <= maxBalance) {
+            balance += amount;
             return true;
         } else {
             return false;
@@ -86,14 +82,17 @@ public class SavingAccount extends Account {
      */
     @Override
     public int yearChange() {
-        return balance / 100 * rate;
+        if (balance > 0) {
+            return balance = balance / 100 * rate;
+        } else {
+            return 0;
+        }
     }
+        public int getMinBalance() {
+            return minBalance;
+        }
 
-    public int getMinBalance() {
-        return minBalance;
-    }
-
-    public int getMaxBalance() {
-        return maxBalance;
-    }
+        public int getMaxBalance() {
+            return maxBalance;
+        }
 }
