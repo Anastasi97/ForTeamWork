@@ -29,7 +29,7 @@ public class CreditAccountTest {
 
         account.add(3_000);
 
-        assertEquals(3_000, account.getBalance());
+        assertEquals(3_005, account.getBalance());
     }
 
     @Test
@@ -42,7 +42,7 @@ public class CreditAccountTest {
 
         account.add(3_000);
 
-        assertEquals(3_000, account.getBalance());
+        assertEquals(2_995, account.getBalance());
     }
 
     @Test
